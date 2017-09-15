@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhysiotherapistTable extends Migration
+class CreateCiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePhysiotherapistTable extends Migration
      */
     public function up()
     {
-        Schema::table('physiotherapist', function (Blueprint $table) {
+        Schema::table('cicles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('last_name',255);
-            $table->string('first_name',255);
-            $table->boolean('enabled')->default(true);
+            $table->date('start_date')->default();
+            $table->date('end_date')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,8 +28,8 @@ class CreatePhysiotherapistTable extends Migration
      */
     public function down()
     {
-        Schema::table('physiotherapist', function (Blueprint $table) {
-            Schema::dropIfExists('physiotherapist');
+        Schema::table('cicles', function (Blueprint $table) {
+            //
         });
     }
 }

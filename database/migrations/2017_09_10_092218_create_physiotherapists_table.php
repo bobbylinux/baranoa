@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisciplinesTable extends Migration
+class CreatePhysiotherapistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDisciplinesTable extends Migration
      */
     public function up()
     {
-        Schema::table('disciplines', function (Blueprint $table) {
+        Schema::table('physiotherapists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description',255);
+            $table->string('last_name',255);
+            $table->string('first_name',255);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
@@ -28,8 +29,8 @@ class CreateDisciplinesTable extends Migration
      */
     public function down()
     {
-        Schema::table('disciplines', function (Blueprint $table) {
-            Schema::dropIfExists('disciplines');
+        Schema::table('physiotherapists', function (Blueprint $table) {
+            Schema::dropIfExists('physiotherapists');
         });
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisciplinesTable extends Migration
+class CreateTerapiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDisciplinesTable extends Migration
      */
     public function up()
     {
-        Schema::table('disciplines', function (Blueprint $table) {
+        Schema::table('terapies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description',255);
             $table->boolean('enabled')->default(true);
@@ -28,8 +28,8 @@ class CreateDisciplinesTable extends Migration
      */
     public function down()
     {
-        Schema::table('disciplines', function (Blueprint $table) {
-            Schema::dropIfExists('disciplines');
+        Schema::table('terapies', function (Blueprint $table) {
+            Schema::dropIfExists('terapies');
         });
     }
 }
