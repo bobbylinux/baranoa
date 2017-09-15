@@ -15,16 +15,17 @@ class CreatePatientsDetailsTable extends Migration
     {
         Schema::table('patients_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->number('patient_id');
-            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->integer('patient_id');
             $table->string('address',255);
-            $table->number('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->integer('city_id');
             $table->string('phone_numbers',255)->nullable();
             $table->string('email',255)->nullable();
-            $table->date('start_date')->default();
+            $table->date('start_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('end_date')->nullable();
             $table->timestamps();
+            /*foreign keys*/
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('patient_id')->references('id')->on('patients');
         });
     }
 

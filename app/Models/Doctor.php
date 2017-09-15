@@ -13,4 +13,11 @@ class Doctor extends Model
     {
         return $this->belongsTo('App\Models\Discipline');
     }
+    /**
+     * Get the pathological conditions made by doctor
+     */
+    public function pathologicalConditions()
+    {
+        return $this->morphMany('\App\Models\PathologicalCondition', 'author');
+    }
 }

@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Terapy extends Model
+class Cycle extends Model
 {
     /**
-     * Get the accesses of the terapy
+     * Get the accesses of cycle.
      */
     public function accesses()
     {
-        return $this->belongsToMany('App\Models\Access');
+        return $this->hasMany('App\Models\Access');
     }
 }

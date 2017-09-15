@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCiclesTable extends Migration
+class CreatePathologicalConditions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCiclesTable extends Migration
      */
     public function up()
     {
-        Schema::table('cicles', function (Blueprint $table) {
+        Schema::table('pathological_conditions', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('start_date')->default();
-            $table->date('end_date')->nullable();
+            $table->string('description');
+            $table->morphs('author');
             $table->timestamps();
         });
     }
@@ -28,8 +28,8 @@ class CreateCiclesTable extends Migration
      */
     public function down()
     {
-        Schema::table('cicles', function (Blueprint $table) {
-            //
+        Schema::table('pathological_conditions', function (Blueprint $table) {
+            Schema::dropIfExists('pathological_conditions');
         });
     }
 }

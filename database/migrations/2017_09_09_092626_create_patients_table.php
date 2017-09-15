@@ -19,9 +19,10 @@ class CreatePatientsTable extends Migration
             $table->string('first_name',255);
             $table->string('tax_code',16);
             $table->date('date_of_birth');
-            $table->number('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->integer('city_id');
             $table->timestamps();
+            /*foreign keys*/
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
