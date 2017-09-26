@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use app\Services\PatientService;
+use App\Services\PatientService;
 use Illuminate\Support\ServiceProvider;
 
 class PatientServiceProvider extends ServiceProvider

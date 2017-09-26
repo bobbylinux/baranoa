@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PatientService;
 use Illuminate\Http\Request;
 
-class PatientsController extends Controller
+class HomeController extends Controller
 {
-
-    private $patient;
-
-    public function __construct(PatientService $patient)
-    {
-        $this->patient = $patient;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +13,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        return view('patients.index');
+        return view('index');
     }
 
     /**
