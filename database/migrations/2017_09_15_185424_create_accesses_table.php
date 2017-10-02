@@ -13,20 +13,20 @@ class CreateAccessesTable extends Migration
      */
     public function up()
     {
-        Schema::table('accesses', function (Blueprint $table) {
+        Schema::create('accesses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_id');
-            $table->integer('physiontherapist_id');
-            $table->integer('terapy_id');
-            $table->string('note',4000)->nullable();
+            $table->integer('physiotherapist_id');
+            $table->integer('therapy_id');
+            $table->string('note', 4000)->nullable();
             $table->boolean('enabled')->default(true);
             $table->integer('cycle_id');
             $table->timestamps();
             /*foreign keys*/
             $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('physiontherapist_id')->references('id')->on('physiontherapists');
-            $table->foreign('terapy_id')->references('id')->on('terapies');
-            $table->foreign('cicle_id')->references('id')->on('cicles');
+            $table->foreign('physiotherapist_id')->references('id')->on('physiotherapists');
+            $table->foreign('therapy_id')->references('id')->on('therapies');
+            $table->foreign('cycle_id')->references('id')->on('cycles');
         });
     }
 
@@ -37,8 +37,6 @@ class CreateAccessesTable extends Migration
      */
     public function down()
     {
-        Schema::table('accesses', function (Blueprint $table) {
-            Schema::dropIfExists('accesses');
-        });
+        Schema::dropIfExists('accesses');
     }
 }

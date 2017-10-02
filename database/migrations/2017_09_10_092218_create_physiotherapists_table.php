@@ -13,10 +13,10 @@ class CreatePhysiotherapistsTable extends Migration
      */
     public function up()
     {
-        Schema::table('physiotherapists', function (Blueprint $table) {
+        Schema::create('physiotherapists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('last_name',255);
-            $table->string('first_name',255);
+            $table->string('last_name', 255);
+            $table->string('first_name', 255);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
@@ -29,8 +29,6 @@ class CreatePhysiotherapistsTable extends Migration
      */
     public function down()
     {
-        Schema::table('physiotherapists', function (Blueprint $table) {
-            Schema::dropIfExists('physiotherapists');
-        });
+        Schema::dropIfExists('physiotherapists');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTerapiesTable extends Migration
+class CreateTherapiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTerapiesTable extends Migration
      */
     public function up()
     {
-        Schema::table('terapies', function (Blueprint $table) {
+        Schema::create('therapies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description',255);
+            $table->string('description', 255);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
@@ -28,8 +28,6 @@ class CreateTerapiesTable extends Migration
      */
     public function down()
     {
-        Schema::table('terapies', function (Blueprint $table) {
-            Schema::dropIfExists('terapies');
-        });
+        Schema::dropIfExists('therapies');
     }
 }

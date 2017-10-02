@@ -13,10 +13,10 @@ class CreateDoctorsTable extends Migration
      */
     public function up()
     {
-        Schema::table('doctors', function (Blueprint $table) {
+        Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('last_name',255);
-            $table->string('first_name',255);
+            $table->string('last_name', 255);
+            $table->string('first_name', 255);
             $table->integer('discipline_id');
             $table->boolean('enabled')->default(true);
             $table->timestamps();
@@ -32,8 +32,6 @@ class CreateDoctorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('doctors', function (Blueprint $table) {
-            Schema::dropIfExists('doctors');
-        });
+        Schema::dropIfExists('doctors');
     }
 }

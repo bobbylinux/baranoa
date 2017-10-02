@@ -13,11 +13,11 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
-        Schema::table('patients', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('last_name',255);
-            $table->string('first_name',255);
-            $table->string('tax_code',16);
+            $table->string('last_name', 255);
+            $table->string('first_name', 255);
+            $table->string('tax_code', 16);
             $table->date('date_of_birth');
             $table->integer('city_id');
             $table->timestamps();
@@ -33,8 +33,6 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
-        Schema::table('patients', function (Blueprint $table) {
-            Schema::dropIfExists('patients');
-        });
+        Schema::dropIfExists('patients');
     }
 }

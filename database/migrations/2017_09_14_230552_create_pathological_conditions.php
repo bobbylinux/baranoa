@@ -13,7 +13,7 @@ class CreatePathologicalConditions extends Migration
      */
     public function up()
     {
-        Schema::table('pathological_conditions', function (Blueprint $table) {
+        Schema::create('pathological_conditions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
             $table->morphs('author');
@@ -28,8 +28,6 @@ class CreatePathologicalConditions extends Migration
      */
     public function down()
     {
-        Schema::table('pathological_conditions', function (Blueprint $table) {
-            Schema::dropIfExists('pathological_conditions');
-        });
+        Schema::dropIfExists('pathological_conditions');
     }
 }

@@ -13,7 +13,7 @@ class CreateCyclesTable extends Migration
      */
     public function up()
     {
-        Schema::table('cycles', function (Blueprint $table) {
+        Schema::create('cycles', function (Blueprint $table) {
             $table->increments('id');
             $table->date('start_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('end_date')->nullable();
@@ -28,8 +28,6 @@ class CreateCyclesTable extends Migration
      */
     public function down()
     {
-        Schema::table('cycles', function (Blueprint $table) {
-            Schema::dropIfExists('cycles');
-        });
+        Schema::dropIfExists('cycles');
     }
 }

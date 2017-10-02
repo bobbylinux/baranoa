@@ -13,7 +13,7 @@ class CreateAccessesTerapiesTable extends Migration
      */
     public function up()
     {
-        Schema::table('accesses_terapies', function (Blueprint $table) {
+        Schema::create('accesses_terapies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('access_id');
             $table->integer('terapy_id');
@@ -31,8 +31,6 @@ class CreateAccessesTerapiesTable extends Migration
      */
     public function down()
     {
-        Schema::table('accesses_terapies', function (Blueprint $table) {
-            Schema::dropIfExists('accesses_terapies');
-        });
+        Schema::dropIfExists('accesses_terapies');
     }
 }
