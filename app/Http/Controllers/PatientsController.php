@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class PatientsController extends Controller
 {
 
-    private $patient;
+    private $patients;
 
-    public function __construct(PatientService $patient)
+    public function __construct(PatientService $patients)
     {
-        $this->patient = $patient;
+        $this->$patients = $patients;
     }
 
     /**
@@ -35,7 +35,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -46,7 +46,9 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $patient_id = $request->input('patientId');
+
+        return $patient_id;
     }
 
     /**
@@ -57,7 +59,12 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        //
+        $parameters = request()->input();
+
+        $parameters['patientId'] = $id;
+        $data = $this->patients->getPatients($parameters);
+
+        return response()->json($data);
     }
 
     /**
@@ -68,7 +75,7 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
