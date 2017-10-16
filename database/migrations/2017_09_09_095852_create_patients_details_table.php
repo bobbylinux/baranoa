@@ -20,8 +20,6 @@ class CreatePatientsDetailsTable extends Migration
             $table->integer('city_id');
             $table->string('phone_numbers', 255)->nullable();
             $table->string('email', 255)->nullable();
-            $table->date('start_date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->date('end_date')->nullable();
             $table->timestamps();
             /*foreign keys*/
             $table->foreign('city_id')->references('id')->on('cities');

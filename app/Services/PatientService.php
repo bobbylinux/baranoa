@@ -26,7 +26,7 @@ class PatientService extends BaseService
     public function getPatients($parameters) {
         if (empty($parameters))
         {
-            return $this->filterPatient(Patient::all());
+            return $this->filterPatients(Patient::all());
         }
 
         $whereClause = $this->getWhereClause($parameters);
