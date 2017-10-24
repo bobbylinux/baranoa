@@ -12,7 +12,7 @@ class PatientsController extends Controller
 
     public function __construct(PatientService $patients)
     {
-        $this->$patients = $patients;
+        $this->patients = $patients;
     }
 
     /**
@@ -24,7 +24,7 @@ class PatientsController extends Controller
     {
         $parameters = request()->input();
 
-        $data = $this->patient->getPatients($parameters);
+        $data = $this->patients->getPatients($parameters);
         return view('patients.index');
     }
 

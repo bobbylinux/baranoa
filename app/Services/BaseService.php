@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-class BaseService
+abstract class BaseService
 {
     protected $clauseProperties = array();
     protected $supportedInclude = array();
