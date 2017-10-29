@@ -26,34 +26,13 @@ class PatientService extends BaseService
     public function getPatients($parameters) {
         if (empty($parameters))
         {
-            return $this->filterPatients(Patient::all());
+            return Patient::with("city")->get();
         }
 
         $whereClause = $this->getWhereClause($parameters);
 
-        $patients = Patient::where($whereClause)->get();
+        return Patient::with("city")->where($whereClause)->get();
 
-        return $this->filterPatients($patients);
-    }
 
-    private function filterPatients($patients)
-    {
-        $data = [];
-
-        foreach ($patients as $patient)
-        {
-            $entry = array(
-                'id' => $patient->id,
-                'last_name' => $patient->last_name,
-                'first_name' => $patient->first_name,
-                'tax_code' => $patient->tax_code,
-                'date_of_birth' => $patient->date_of_birth
-            );
-
-            $data[] = $entry;
-
-        }
-
-        return $data;
     }
 }

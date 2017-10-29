@@ -15,10 +15,11 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('main_code',16);
             $table->string('name',255);
             $table->string('province',2);
             $table->string('zip_code',6);
+            $table->string('main_code',16);
+            $table->string('fiscal_code',8)->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->timestamps();

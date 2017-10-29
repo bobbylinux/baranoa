@@ -18,6 +18,7 @@ class CreatePatientsTable extends Migration
             $table->string('last_name', 255);
             $table->string('first_name', 255);
             $table->string('tax_code', 16);
+            $table->string('sex', 1);
             $table->date('date_of_birth');
             $table->integer('city_id');
             $table->timestamps();

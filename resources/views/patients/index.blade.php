@@ -57,14 +57,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
+                    @foreach($patients as $patient)
+                        <tr>
+                            <td>{!! $patient->last_name !!}</td>
+                            <td>{!! $patient->first_name !!}</td>
+                            <td>{!! $patient->date_of_birth !!}</td>
+                            <td>{!! $patient->city->name !!}</td>
+                            <td>{!! $patient->tax_code !!}</td>
+                            <td></td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

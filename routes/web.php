@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::resource('/', 'HomeController');
 Route::resource('patients', 'PatientsController');
+
+Auth::routes();
+

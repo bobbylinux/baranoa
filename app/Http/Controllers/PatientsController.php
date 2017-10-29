@@ -24,8 +24,9 @@ class PatientsController extends Controller
     {
         $parameters = request()->input();
 
-        $data = $this->patients->getPatients($parameters);
-        return view('patients.index');
+        $patients = $this->patients->getPatients($parameters);
+
+        return view('patients.index', compact('patients'));
     }
 
     /**
