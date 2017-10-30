@@ -32,7 +32,5 @@ class PatientService extends BaseService
         $whereClause = $this->getWhereClause($parameters);
 
         return Patient::with("city")->where($whereClause)->get();
-
-
     }
 }

@@ -20,3 +20,6 @@ Route::resource('patients', 'PatientsController');
 
 Auth::routes();
 
+
+Route::get('cities/datatable/{args}', 'CitiesController@data_table');
+

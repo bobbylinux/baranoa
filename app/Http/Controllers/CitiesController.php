@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PatientService;
-use App\Services\CityService;
+use app\Services\CityService;
 use Illuminate\Http\Request;
 
-class PatientsController extends Controller
+class CitiesController extends Controller
 {
 
-    private $patients;
     private $cities;
 
-    public function __construct(PatientService $patients, CityService $cities)
+    public function __construct(CityService $cities)
     {
-        $this->patients = $patients;
         $this->cities = $cities;
     }
 
@@ -25,11 +22,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $parameters = request()->input();
-        $patients = $this->patients->getPatients($parameters);
-        $cities = $this->cities->getSelectableCities();
-
-        return view('patients.index', compact('patients','cities'));
+        //
     }
 
     /**
@@ -39,7 +32,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -50,9 +43,7 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        $patient_id = $request->input('patientId');
-
-        return $patient_id;
+        //
     }
 
     /**
@@ -63,12 +54,7 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        $parameters = request()->input();
-
-        $parameters['patientId'] = $id;
-        $data = $this->patients->getPatients($parameters);
-
-        return response()->json($data);
+        //
     }
 
     /**
@@ -79,7 +65,7 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -103,5 +89,20 @@ class PatientsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Get the data table values.
+     *
+     * @param  string  $args
+     * @return json
+     */
+    public function data_table(Request $request)
+    {
+        $args = $request->input('param');
+        $data = $this->cities->getCitiesDataTable($args);
+
+        return response()->json($data);
+
     }
 }

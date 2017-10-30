@@ -29,7 +29,7 @@
         </div>
         <div class="col-4">
             <label for="city">Comune di Nascita</label>
-            <input type="text" class="form-control" id="city" name="city">
+            {!! Form::select('birthcity', $cities, null, array('class' => 'select2 form-control', 'id' => 'birthcity')) !!}
         </div>
     </div>
     <div class="row row-patient-search-btn">
