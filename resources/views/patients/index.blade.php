@@ -7,7 +7,7 @@
         </li>
         <li class="breadcrumb-item active">Ricerca-Inserimento Pazienti</li>
     </ol>
-    {!! Form::open(['url' => '', 'method' => 'post']) !!}
+    {!! Form::open(['url' => url('/patients'), 'method' => 'get']) !!}
     <div class="row">
         <div class="col-6">
             <label for="lastname">Cognome</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="col-4">
             <label for="birthdate">Data di Nascita</label>
-            <input type="text" class="form-control" id="birthdate" name="birthdate">
+            <input type="date" class="form-control" id="birthdate" name="birthdate">
         </div>
         <div class="col-4">
             <label for="city">Comune di Nascita</label>
@@ -34,7 +34,7 @@
     </div>
     <div class="row row-patient-search-btn">
         <div class="col-12">
-            <button type="button" class="btn btn-outline-info btn-block">Ricerca</button>
+            <button type="submit" class="btn btn-outline-info btn-block">Ricerca</button>
         </div>
     </div>
     {!! Form::close() !!}

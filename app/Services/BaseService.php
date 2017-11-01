@@ -36,9 +36,11 @@ abstract class BaseService
 
         foreach ($this->clauseProperties as $key => $prop)
         {
-            if (in_array($prop, array_keys($parameters)))
+            if (in_array($key, array_keys($parameters)))
             {
-                $clause[$key] = $parameters[$prop];
+                if ($parameters[$key] != null) {
+                    $clause[$prop] = $parameters[$key];
+                }
             }
         }
 

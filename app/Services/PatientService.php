@@ -10,10 +10,11 @@ class PatientService extends BaseService
 
     protected $clauseProperties = array(
         'id' => 'id',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
-        'tax_code' => 'tax_code',
-        'date_of_birth' => 'date_of_birth',
+        'firstname' => 'first_name',
+        'lastname' => 'last_name',
+        'taxcode' => 'tax_code',
+        'birthdate' => 'date_of_birth',
+        'birthcity' => 'city_id',
     );
 
     protected $rules = array(
