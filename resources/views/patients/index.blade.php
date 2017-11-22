@@ -64,7 +64,10 @@
                             <td>{!! $patient->date_of_birth !!}</td>
                             <td>{!! $patient->city->name !!}</td>
                             <td>{!! $patient->tax_code !!}</td>
-                            <td></td>
+                            <td>
+                                <a class="icon-link" href="{!! url('patients/'.$patient->id.'/edit') !!}" title="Modifica Anagrafica"><i class="fa fa-address-card" aria-hidden="true"></i></a>
+                                <a class="icon-link" href="#" title="Nuovo Accesso"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

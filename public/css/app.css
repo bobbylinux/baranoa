@@ -28,3 +28,5 @@
 .btn {
     cursor: pointer;
 }
+
+a { color: inherit; }

@@ -79,7 +79,10 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-
+        $parameters['id'] = $id;
+        $patients = $this->patients->getPatients($parameters);
+        $cities = $this->cities->getSelectableCities();
+        return view('patients.edit', compact('patients','cities'));
     }
 
     /**
