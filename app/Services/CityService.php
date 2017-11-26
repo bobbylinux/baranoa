@@ -23,7 +23,8 @@ class CityService extends BaseService
 
     public function getCities($parameters)
     {
-        if (empty($parameters)) {
+        if (!$parameters || isEmpty($parameters))
+        {
             return City::all();
         }
 

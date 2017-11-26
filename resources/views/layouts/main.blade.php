@@ -22,18 +22,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="{!! url('') !!}">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Patients">
-                <a class="nav-link" href="{!! url('patients') !!}">
-                    <i class="fa fa-fw fa-users"></i>
-                    <span class="nav-link-text">Pazienti</span>
-                </a>
-            </li>
+            @foreach(json_decode($menu->value) as $item)
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="{!! $item->label !!}">
+                    @if (isset($item->sub))
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+                           href="#collapseComponents"
+                           data-parent="#exampleAccordion">
+                            <i class="fa fa-fw {!! $item->icon !!}"></i>
+                            <span class="nav-link-text">{!! $item->label !!}</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponents">
+                            @foreach($item->sub as $subitem)
+                                <li>
+                                    <a href="{!! url($subitem->link) !!}">
+                                        <span class="nav-link-text">{!! $subitem->label !!}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <a class="nav-link" href="{!! url($item->link) !!}">
+                            <i class="fa fa-fw {!! $item->icon !!}"></i>
+                            <span class="nav-link-text">{!! $item->label !!}</span>
+                        </a>
+                    @endif
+                </li>
+            @endforeach
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
@@ -60,8 +74,10 @@
                     <a class="dropdown-item" href="#">
                         <strong>David Miller</strong>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome!
-                            These messages clip off when they reach the end of the box so they don't overflow over to
+                        <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty
+                            awesome!
+                            These messages clip off when they reach the end of the box so they don't overflow over
+                            to
                             the sides!
                         </div>
                     </a>
@@ -69,7 +85,8 @@
                     <a class="dropdown-item" href="#">
                         <strong>Jane Smith</strong>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00
+                        <div class="dropdown-message small">I was wondering if you could meet for an appointment at
+                            3:00
                             instead of 4:00. Thanks!
                         </div>
                     </a>
@@ -105,7 +122,8 @@
                   <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
               </span>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">This is an automated server response message. All systems
+                        <div class="dropdown-message small">This is an automated server response message. All
+                            systems
                             are online.
                         </div>
                     </a>
@@ -116,7 +134,8 @@
                   <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
               </span>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">This is an automated server response message. All systems
+                        <div class="dropdown-message small">This is an automated server response message. All
+                            systems
                             are online.
                         </div>
                     </a>
@@ -127,7 +146,8 @@
                   <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
               </span>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">This is an automated server response message. All systems
+                        <div class="dropdown-message small">This is an automated server response message. All
+                            systems
                             are online.
                         </div>
                     </a>
@@ -143,7 +163,7 @@
     </div>
 </nav>
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container">
         @yield('content')
     </div>
     <!-- /.container-fluid-->

@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PatientService;
-use App\Services\CityService;
+use App\Services\PhysiotherapistService;
 use App\Services\SettingService;
 use Illuminate\Http\Request;
 
-class PatientsController extends Controller
+class PhysiotherapistsController extends Controller
 {
-
-    private $patients;
-    private $cities;
+    private $physiotherapists;
     private $settings;
 
-    public function __construct(PatientService $patients, CityService $cities, SettingService $settings)
+    public function __construct(PhysiotherapistService $physiotherapists, SettingService $settings)
     {
-        $this->patients = $patients;
-        $this->cities = $cities;
+        $this->physiotherapists = $physiotherapists;
         $this->settings = $settings;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -28,12 +23,9 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $parameters = request()->input();
-        $menu = $this->settings->getSetting(array('key' => 'menu'));
-        $patients = $this->patients->getPatients($parameters);
-        $cities = $this->cities->getSelectableCities();
-
-        return view('patients.index', compact('patients','cities', 'menu'));
+        $menu = $this->settings->getSetting(array("key" => "menu"));
+        $physiotherapists = $this->physiotherapists->getPhysiotherapists();
+        return view('physiotherapists.index', compact('physiotherapists', 'menu'));
     }
 
     /**
@@ -43,7 +35,6 @@ class PatientsController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -54,9 +45,7 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        $patient_id = $request->input('patientId');
-
-        return $patient_id;
+        //
     }
 
     /**
@@ -67,12 +56,7 @@ class PatientsController extends Controller
      */
     public function show($id)
     {
-        $parameters = request()->input();
-
-        $parameters['patientId'] = $id;
-        $data = $this->patients->getPatients($parameters);
-
-        return response()->json($data);
+        //
     }
 
     /**
@@ -83,11 +67,7 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        $menu = $this->settings->getSetting(array('key' => 'menu'));
-        $parameters['id'] = $id;
-        $patients = $this->patients->getPatients($parameters);
-        $cities = $this->cities->getSelectableCities();
-        return view('patients.edit', compact('patients','cities', 'menu'));
+        //
     }
 
     /**
@@ -99,7 +79,8 @@ class PatientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->physiotherapists->updatePhysiotherapist($request, $id);
+        return redirect('physiotherapists');
     }
 
     /**
@@ -110,6 +91,10 @@ class PatientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$this->physiotherapists->deletePhysiotherapist($id)) {
+            $physiotherapist = $this->physiotherapists->getPhysiotherapists(array("id" => $id));
+        }
+
+        return redirect('physiotherapists');
     }
 }

@@ -7,7 +7,7 @@
         </li>
         <li class="breadcrumb-item active">Ricerca-Inserimento Pazienti</li>
     </ol>
-    {!! Form::open(['url' => url('/patients'), 'method' => 'get']) !!}
+    {!! Form::open(['url' => url('patients'), 'method' => 'get']) !!}
     <div class="row">
         <div class="col-6">
             <label for="lastname">Cognome</label>
@@ -32,7 +32,7 @@
             {!! Form::select('birthcity', $cities, null, array('class' => 'select2 form-control', 'id' => 'birthcity')) !!}
         </div>
     </div>
-    <div class="row row-patient-search-btn">
+    <div class="row form-group row-patient-search-btn">
         <div class="col-12">
             <button type="submit" class="btn btn-outline-info btn-block">Ricerca</button>
         </div>
@@ -74,6 +74,5 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 @stop

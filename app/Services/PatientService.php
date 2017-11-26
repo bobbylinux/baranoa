@@ -24,14 +24,21 @@ class PatientService extends BaseService
         'date_of_birth' => 'required|date'
     );
 
-    public function getPatients($parameters) {
-        if (empty($parameters))
+    public function getPatients($parameters = FALSE)
+    {
+        // TODO: understand how to get only last patient detail and not the entire collection using with method in Eloquent models.
+        if (!$parameters || empty($parameters))
         {
-            return Patient::with("city","details")->get();
+            return Patient::with(["city", "details" => function ($query) {
+                $query->max('id');
+            }])->get();
         }
 
         $whereClause = $this->getWhereClause($parameters);
 
-        return Patient::with("city")->where($whereClause)->get();
+        return Patient::with(["city", "details" => function ($query)
+        {
+            $query->max('id');
+        }])->where($whereClause)->get();
     }
 }

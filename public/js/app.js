@@ -42,5 +42,88 @@ var bootstrap=function(t,e){"use strict";function n(t,e){for(var n=0;n<e.length;
 $(document).ready(function(){
     $('#dataTable').DataTable();
 
+    //events modal
 
+    /*disciplines*/
+    $(document).on("click", "a.delete-discipline", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        $("#form-delete-discipline").attr("action", url);
+        $("#modal-delete-discipline").modal("show");
+    });
+
+    $(document).on("click", "a.add-discipline", function(event) {
+        event.preventDefault();
+        alert("add!");
+    });
+
+    $(document).on("click", "a.edit-discipline", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var description = $(this).data("description");
+        var enabled = $(this).data("enabled");
+        $("#form-edit-discipline").attr("action", url);
+        $("#form-edit-discipline input#description").val(description);
+        $("#form-edit-discipline select#enabled").val(enabled);
+        $("#modal-edit-discipline").modal("show");
+    });
+
+    /*end disciplines*/
+
+    /*doctors*/
+    $(document).on("click", "a.delete-doctor", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        $("#form-delete-doctor").attr("action", url);
+        $("#modal-delete-doctor").modal("show");
+    });
+
+    $(document).on("click", "a.add-doctor", function(event) {
+        event.preventDefault();
+        alert("add!");
+    });
+
+    $(document).on("click", "a.edit-doctor", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var lastName = $(this).data("last-name");
+        var firstName = $(this).data("first-name");
+        var discipline = $(this).data("discipline");
+        var enabled = $(this).data("enabled");
+        $("#form-edit-doctor").attr("action", url);
+        $("#form-edit-doctor input#firstname").val(firstName);
+        $("#form-edit-doctor input#lastname").val(lastName);
+        $("#form-edit-doctor select#discipline").val(discipline);
+        $("#form-edit-doctor select#enabled").val(enabled);
+        $("#modal-edit-doctor").modal("show");
+    });
+
+    /*end doctors*/
+
+    /*physiotherapists*/
+    $(document).on("click", "a.delete-physiotherapist", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        $("#form-delete-physiotherapist").attr("action", url);
+        $("#modal-delete-physiotherapist").modal("show");
+    });
+
+    $(document).on("click", "a.add-physiotherapist", function(event) {
+        event.preventDefault();
+        alert("add!");
+    });
+
+    $(document).on("click", "a.edit-physiotherapist", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var lastName = $(this).data("last-name");
+        var firstName = $(this).data("first-name");
+        var enabled = $(this).data("enabled");
+        $("#form-edit-physiotherapist").attr("action", url);
+        $("#form-edit-physiotherapist input#firstname").val(firstName);
+        $("#form-edit-physiotherapist input#lastname").val(lastName);
+        $("#form-edit-physiotherapist select#enabled").val(enabled);
+        $("#modal-edit-physiotherapist").modal("show");
+    });
+    /*end physiotherapists*/
 });

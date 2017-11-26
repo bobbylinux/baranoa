@@ -7,9 +7,9 @@
         </li>
         <li class="breadcrumb-item active">Modifica Paziente</li>
     </ol>
-    {!! Form::open(['url' => url('/patients'), 'method' => 'get']) !!}
+    {!! Form::open(['url' => url('patients'), 'method' => 'get']) !!}
     @foreach($patients as $patient)
-        <div class="row">
+        <div class="row form-group">
             <div class="col-6">
                 <label for="lastname">Cognome</label>
                 <input type="text" class="form-control" id="lastname" name="lastname"
@@ -21,7 +21,7 @@
                        value="{!! $patient->first_name !!}">
             </div>
         </div>
-        <div class="row">
+        <div class="row form-group">
             <div class="col-4">
                 <label for="taxcode">Codice Fiscale</label>
                 <input type="text" class="form-control" id="taxcode" name="taxcode" value="{!! $patient->tax_code !!}">
@@ -37,14 +37,22 @@
             </div>
         </div>
 
-        <div class="row">
-            {!! var_dump($patient->details) !!}
-        </div>
+        @foreach($patient->details as $detail)
+            <div class="row form-group">
+                <div class="col-4">
+                    <label for="address">Indirizzo di residenza</label>
+                    <input type="text" class="form-control" id="address" name="address"
+                           value="{!! $detail->address !!}">
+                </div>
+            </div>
+        @endforeach
 
-        <div class="row row-patient-search-btn">
+        <div class="row row-patient-save-btn">
             <div class="col-12">
                 <button type="submit" class="btn btn-outline-primary btn-block">Salva</button>
             </div>
         </div>
     @endforeach
+
+    {!! Form::close !!}
 @stop

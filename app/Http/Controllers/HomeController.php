@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\SettingService;
 
 class HomeController extends Controller
 {
+
+    private $settings;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SettingService $settings)
     {
         $this->middleware('auth');
+        $this->settings = $settings;
     }
 
     /**
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $menu = $this->settings->getSetting(array('key' => 'menu'));
+        return view('index', compact('menu'));
     }
 }
