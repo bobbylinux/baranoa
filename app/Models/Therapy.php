@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Terapy extends Model
+class Therapy extends Model
 {
     /**
      * Get the accesses of the terapy

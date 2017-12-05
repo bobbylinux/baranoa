@@ -22,4 +22,12 @@ class Patient extends Model
         return $this->hasMany('App\Models\PatientDetail');
     }
 
+    /**
+     * Get the last patient details.
+     */
+    public function lastDetail()
+    {
+        return $this->hasOne('App\Models\PatientDetail')->orderBy('id','desc');
+    }
+
 }

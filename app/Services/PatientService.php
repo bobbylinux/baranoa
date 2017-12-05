@@ -26,12 +26,9 @@ class PatientService extends BaseService
 
     public function getPatients($parameters = FALSE)
     {
-        // TODO: understand how to get only last patient detail and not the entire collection using with method in Eloquent models.
         if (!$parameters || empty($parameters))
         {
-            return Patient::with(["city", "details" => function ($query) {
-                $query->max('id');
-            }])->get();
+            return Patient::with(["city", "lastDetail"])->get();
         }
 
         $whereClause = $this->getWhereClause($parameters);

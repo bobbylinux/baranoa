@@ -24,8 +24,8 @@ class Access extends Model
     /**
      * Get the access terapies
     */
-    public function terapies()
+    public function therapies()
     {
-        return $this->belongsToMany('App\Models\Terapy');
+        return $this->belongsToMany('App\Models\Therapy');
     }
 }

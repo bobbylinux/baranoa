@@ -3,14 +3,14 @@
     <!-- Breadcrumbs -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{!! url('physiotherapists') !!}">Fisioterapisti</a>
+            <a href="{!! url('therapies') !!}">Terapie</a>
         </li>
-        <li class="breadcrumb-item active">Lista fisioterapisti disponibili</li>
+        <li class="breadcrumb-item active">Lista terapie disponibili</li>
     </ol>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> Lista fisioterapisti
-            <a href="#" class="pull-right add-button add-physiotherapist"><i class="fa fa-plus" aria-hidden="true" title="Aggiungi un fisioterapista"></i>
+            <i class="fa fa-table"></i> Lista terapie
+            <a href="#" class="pull-right add-button add-therapy"><i class="fa fa-plus" aria-hidden="true" title="Aggiungi una terapia"></i>
             </a>
         </div>
         <div class="card-body">
@@ -24,15 +24,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($physiotherapists as $physiotherapist)
+                    @foreach($therapies as $therapy)
                         <tr>
-                            <td>{!! $physiotherapist->last_name !!} {!! $physiotherapist->first_name !!}</td>
-                            <td>{!! ($physiotherapist->enabled) ? "Sì" : "No" !!}</td>
+                            <td>{!! $therapy->description !!}</td>
+                            <td>{!! ($therapy->enabled) ? "Sì" : "No" !!}</td>
                             <td>
-                                <a class="icon-link edit-physiotherapist" href="{!! url('physiotherapists/'.$physiotherapist->id) !!}"
-                                   title="Modifica Fisioterapista" data-last-name="{!! $physiotherapist->last_name !!}" data-first-name="{!! $physiotherapist->first_name !!}" data-enabled="{!! ($physiotherapist->enabled) ? "1" : "0" !!}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <a class="icon-link delete-physiotherapist"
-                                   href="{!! url('physiotherapists/'.$physiotherapist->id) !!}" title="Elimina Fisioterapista"><i
+                                <a class="icon-link edit-therapy" href="{!! url('therapies/'.$therapy->id) !!}"
+                                   title="Modifica Terapia" data-description="{!! $therapy->description !!}" data-enabled="{!! ($therapy->enabled) ? "1" : "0" !!}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a class="icon-link delete-therapy"
+                                   href="{!! url('therapies/'.$therapy->id) !!}" title="Elimina Terapia"><i
                                             class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
@@ -42,52 +42,45 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="modal-delete-physiotherapist" tabindex="-1" role="dialog">
+    <div class="modal" id="modal-delete-therapy" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Elimina fisioterapista</h5>
+                    <h5 class="modal-title">Elimina terapia</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {!! Form::open(['url' => url('physiotherapists'), 'method' => 'post', 'id'=>'form-delete-physiotherapist']) !!}
+                {!! Form::open(['url' => url('therapies'), 'method' => 'post', 'id'=>'form-delete-therapy']) !!}
                 <div class="modal-body">
-                    <p>Si è sicuri di eliminare questo fisioterapista?<br>Se il fisioterapista è già collegata ad un accesso, non
-                        sarà impossibile eliminarlo.</p>
+                    <p>Si è sicuri di eliminare questa terapia?<br>Se la terapia è già collegata ad un accesso, non
+                        sarà impossibile eliminarla.</p>
                 </div>
                 {{ method_field('DELETE') }}
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annulla</button>
-                    <button id="btn-delete-physiotherapist" class="btn btn-outline-danger">Elimina</button>
+                    <button id="btn-delete-therapy" class="btn btn-outline-danger">Elimina</button>
                 </div>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="modal-edit-physiotherapist">
+    <div class="modal" tabindex="-1" role="dialog" id="modal-edit-therapy">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modifica fisioterapista</h5>
+                    <h5 class="modal-title">Modifica terapia</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {!! Form::open(['url' => url('physiotherapists'), 'method' => 'post', 'id' => 'form-edit-physiotherapist']) !!}
+                {!! Form::open(['url' => url('therapies'), 'method' => 'post', 'id' => 'form-edit-therapy']) !!}
                 <div class="modal-body">
                     <div class="row form-group">
                         <div class="col-12">
-                            <label for="lastname">Cognome</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
-                                   value="">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-12">
-                            <label for="firstname">Nome</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
+                            <label for="description">Descrizione</label>
+                            <input type="text" class="form-control" id="description" name="description"
                                    value="">
                         </div>
                     </div>

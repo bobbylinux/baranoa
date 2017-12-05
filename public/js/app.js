@@ -126,4 +126,29 @@ $(document).ready(function(){
         $("#modal-edit-physiotherapist").modal("show");
     });
     /*end physiotherapists*/
+
+    /*therapies*/
+    $(document).on("click", "a.delete-therapy", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        $("#form-delete-therapy").attr("action", url);
+        $("#modal-delete-therapy").modal("show");
+    });
+
+    $(document).on("click", "a.add-therapy", function(event) {
+        event.preventDefault();
+        alert("add!");
+    });
+
+    $(document).on("click", "a.edit-therapy", function(event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var description = $(this).data("description");
+        var enabled = $(this).data("enabled");
+        $("#form-edit-therapy").attr("action", url);
+        $("#form-edit-therapy input#description").val(description);
+        $("#form-edit-therapy select#enabled").val(enabled);
+        $("#modal-edit-therapy").modal("show");
+    });
+    /*end therapies*/
 });

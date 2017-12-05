@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PhysiotherapistService;
 use App\Services\SettingService;
+use App\Services\TherapyService;
 use Illuminate\Http\Request;
 
-class PhysiotherapistsController extends Controller
+class TherapiesController extends Controller
 {
-    private $physiotherapists;
+    private $therapies;
     private $settings;
 
-    public function __construct(PhysiotherapistService $physiotherapists, SettingService $settings)
+    public function __construct(TherapyService $therapies, SettingService $settings)
     {
-        $this->physiotherapists = $physiotherapists;
+        $this->therapies = $therapies;
         $this->settings = $settings;
     }
     /**
@@ -24,8 +24,8 @@ class PhysiotherapistsController extends Controller
     public function index()
     {
         $menu = $this->settings->getSetting(array("key" => "menu"));
-        $physiotherapists = $this->physiotherapists->getPhysiotherapists();
-        return view('physiotherapists.index', compact('physiotherapists', 'menu'));
+        $therapies = $this->therapies->getTherapies();
+        return view('therapies.index', compact('therapies', 'menu'));
     }
 
     /**
@@ -35,6 +35,7 @@ class PhysiotherapistsController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -57,8 +58,8 @@ class PhysiotherapistsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->physiotherapists->updatePhysiotherapist($request, $id);
-        return redirect('physiotherapists');
+        $this->therapies->updateTherapy($request, $id);
+        return redirect('therapies');
     }
 
     /**
@@ -69,10 +70,11 @@ class PhysiotherapistsController extends Controller
      */
     public function destroy($id)
     {
-        if (!$this->physiotherapists->deletePhysiotherapist($id)) {
-            $physiotherapist = $this->physiotherapists->getPhysiotherapists(array("id" => $id));
+
+        if (!$this->therapies->deleteTherapy($id)) {
+            $therapy = $this->therapies->getTherapies(array("id" => $id));
         }
 
-        return redirect('physiotherapists');
+        return redirect('therapies');
     }
 }
