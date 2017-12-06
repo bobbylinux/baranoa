@@ -17,7 +17,11 @@ class CreateDiagnosisTable extends Migration
             $table->increments('id');
             $table->integer('cycle_id');
             $table->string('description');
+            $table->integer('doctor_id')->nullable();
+            $table->integer('physiotherapist_id')->nullable();
             $table->foreign('cycle_id')->references('id')->on('cycles');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('physiotherapist_id')->references('id')->on('physiotherapists');
             $table->timestamps();
         });
     }

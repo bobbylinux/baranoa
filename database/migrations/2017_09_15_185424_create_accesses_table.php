@@ -17,7 +17,6 @@ class CreateAccessesTable extends Migration
             $table->increments('id');
             $table->integer('patient_id');
             $table->integer('physiotherapist_id');
-            $table->integer('therapy_id');
             $table->string('note', 4000)->nullable();
             $table->boolean('enabled')->default(true);
             $table->integer('cycle_id');
