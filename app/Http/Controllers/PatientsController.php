@@ -113,4 +113,17 @@ class PatientsController extends Controller
     {
         //
     }
+    /**
+     * Get a list of resource in json.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function datatable(Request $request)
+    {
+        $parameters = $request->input("term");
+
+        return response()->json(['data' => "OK"]);
+
+    }
 }

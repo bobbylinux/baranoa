@@ -87,7 +87,7 @@
                     <div class="row form-group">
                         <div class="col-12">
                             <label for="description">Attiva</label>
-                            {!! Form::select('enabled', array(false => 'No', true => 'Sì'), false, array('class'=>'form-control', 'id' => 'enabled')) !!}
+                            {!! Form::select('enabled', array(false => 'No', true => 'Sì'), false, array('class'=>'form-control', 'id' => 'edit-enabled')) !!}
                         </div>
                     </div>
                 </div>
@@ -98,6 +98,41 @@
                 </div>
                 {!! Form::close() !!}
             </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="modal-add-discipline">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['url' => url('disciplines'), 'method' => 'post', 'id' => 'form-edit-discipline']) !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aggiungi disciplina</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <label for="description">Descrizione</label>
+                            <input type="text" class="form-control" id="description" name="description"
+                                   value="">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <label for="description">Attiva</label>
+                            {!! Form::select('enabled', array(false => 'No', true => 'Sì'), false, array('class'=>'form-control', 'id' => 'add-enabled')) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 @stop
