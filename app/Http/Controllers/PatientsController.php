@@ -30,8 +30,10 @@ class PatientsController extends Controller
     {
         $parameters = request()->input();
         $menu = $this->settings->getSetting(array('key' => 'menu'));
-        $patients = $this->patients->getPatients($parameters);
-        $cities = $this->cities->getSelectableCities();
+        if ($parameters && max($parameters) != null) {
+            $patients = $this->patients->getPatients($parameters);
+        }
+        //$cities = $this->cities->getSelectableCities();
 
         return view('patients.index', compact('patients','cities', 'menu'));
     }

@@ -24,7 +24,6 @@ class CreateAccessesTable extends Migration
             /*foreign keys*/
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('physiotherapist_id')->references('id')->on('physiotherapists');
-            $table->foreign('therapy_id')->references('id')->on('therapies');
             $table->foreign('cycle_id')->references('id')->on('cycles');
         });
     }

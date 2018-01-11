@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCyclesTable extends Migration
+class CreateProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCyclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cycles', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('start_date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->date('end_date')->nullable();
-            $table->string('note')->nullable();
-            $table->string('program')->nullable();
-            $table->string('final_report')->nullable();
+            $table->string('title',128);
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCyclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cycles');
+        Schema::dropIfExists('programs');
     }
 }

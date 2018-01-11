@@ -28,8 +28,8 @@
             <input type="date" class="form-control" id="birthdate" name="birthdate">
         </div>
         <div class="col-4">
-            <label for="city">Comune di Nascita</label>
-            {!! Form::select('birthcity', $cities, null, array('class' => 'select2 form-control', 'id' => 'birthcity')) !!}
+            <label for="birthdate">Comune di nascita o stato estero di nascita</label>
+            <input type="text" class="form-control" id="birthcity" name="birthcity">
         </div>
     </div>
     <div class="row form-group row-patient-search-btn">
@@ -39,6 +39,7 @@
     </div>
     {!! Form::close() !!}
 
+    @if (isset($patients))
     <div class="card mb-3">
         <div class="card-header">
             <i class="fa fa-table"></i> Lista Pazienti
@@ -75,4 +76,5 @@
             </div>
         </div>
     </div>
+    @endif
 @stop
