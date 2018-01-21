@@ -29,14 +29,26 @@ class DoctorService extends BaseService
         return Doctor::destroy($id);
     }
 
-    public function updateDoctor($requst, $id)
+    public function updateDoctor($request, $id)
     {
         $doctor = Doctor::where('id',$id)->firstOrFail();
 
-        $doctor->first_name = $requst->firstname;
-        $doctor->last_name = $requst->lastname;
-        $doctor->discipline_id = $requst->discipline;
-        $doctor->enabled = $requst->enabled;
+        $doctor->first_name = $request->firstname;
+        $doctor->last_name = $request->lastname;
+        $doctor->discipline_id = $request->discipline;
+        $doctor->enabled = $request->enabled;
+
+        return $doctor->save();
+    }
+
+    public function createDoctor($request)
+    {
+        $doctor = new Doctor();
+
+        $doctor->first_name = $request->firstname;
+        $doctor->last_name = $request->lastname;
+        $doctor->discipline_id = $request->discipline;
+        $doctor->enabled = $request->enabled;
 
         return $doctor->save();
     }

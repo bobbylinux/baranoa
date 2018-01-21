@@ -2,21 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\EventService;
-use App\Services\SettingService;
 use Illuminate\Http\Request;
 
-class EventsController extends Controller
+class AccessesController extends Controller
 {
-    private $events;
-    private $settings;
-
-    public function __construct(EventService $events, SettingService $settings)
-    {
-        $this->events = $events;
-        $this->settings = $settings;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +13,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $menu = $this->settings->getSetting(array("key" => "menu"));
-        $events = $this->events->getEvents();
-        return view('events.index', compact('events', 'menu'));
+        //
     }
 
     /**
@@ -36,9 +23,6 @@ class EventsController extends Controller
      */
     public function create()
     {
-
-        return view('events.create');
-
     }
 
     /**
@@ -49,7 +33,6 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

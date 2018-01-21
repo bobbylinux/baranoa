@@ -71,7 +71,7 @@ $(document).ready(function(){
 
     $(document).on("click", "a.add-discipline", function(event) {
         event.preventDefault();
-        alert("add!");
+        $("#modal-add-discipline").modal("show");
     });
 
     $(document).on("click", "a.edit-discipline", function(event) {
@@ -97,7 +97,7 @@ $(document).ready(function(){
 
     $(document).on("click", "a.add-doctor", function(event) {
         event.preventDefault();
-        alert("add!");
+        $("#modal-add-doctor").modal("show");
     });
 
     $(document).on("click", "a.edit-doctor", function(event) {
@@ -127,7 +127,7 @@ $(document).ready(function(){
 
     $(document).on("click", "a.add-physiotherapist", function(event) {
         event.preventDefault();
-        alert("add!");
+        $("#modal-add-physiotherapist").modal("show");
     });
 
     $(document).on("click", "a.edit-physiotherapist", function(event) {
@@ -154,7 +154,7 @@ $(document).ready(function(){
 
     $(document).on("click", "a.add-therapy", function(event) {
         event.preventDefault();
-        alert("add!");
+        $("#modal-add-therapy").modal("show");
     });
 
     $(document).on("click", "a.edit-therapy", function(event) {
@@ -168,35 +168,6 @@ $(document).ready(function(){
         $("#modal-edit-therapy").modal("show");
     });
     /*end therapies*/
-
-    /*events*/
-    $('#calendar').fullCalendar({
-        lang: 'it',
-        defaultView: 'agendaWeek',
-        minTime: "07:00:00",
-        maxTime: "20:00:00",
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        firstDay: 1,
-        firstHour: 8,
-        slotMinutes: 15,
-        axisFormat: 'HH:mm',
-        timeFormat: { agenda: 'H:mm{ - H:mm}', '': 'H:mm' },
-        selectable: true,
-        selectHelper: true,
-        editable: true,
-        weekends: true,
-        dayClick: function() {
-            //alert('a day has been clicked!');
-        },
-
-        // add new event
-        select: function(start, end, allDay) {
-            $("#create-event").modal("show");        },
-    });
 
     //search patient
     $("#patient").select2({

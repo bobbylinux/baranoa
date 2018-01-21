@@ -3,9 +3,9 @@
     <!-- Breadcrumbs -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{!! url('disciplines') !!}">Discipline</a>
+            <a href="{!! url('accesses') !!}">Nuovo Accesso</a>
         </li>
-        <li class="breadcrumb-item active">Lista discipline disponibili</li>
+        <li class="breadcrumb-item active">Crea nuovo accesso</li>
     </ol>
     <div class="card mb-3">
         <div class="card-header">

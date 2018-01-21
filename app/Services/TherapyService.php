@@ -27,14 +27,23 @@ class TherapyService extends BaseService
         return Therapy::destroy($id);
     }
 
-    public function updateTherapy($requst, $id)
+    public function updateTherapy($request, $id)
     {
         $therapy = Therapy::where('id', $id)->firstOrFail();
 
-        $therapy->description = $requst->description;
-        $therapy->enabled = $requst->enabled;
+        $therapy->description = $request->description;
+        $therapy->enabled = $request->enabled;
 
         return $therapy->save();
     }
 
+    public function createTherapy($request)
+    {
+        $therapy = new Therapy();
+
+        $therapy->description = $request->description;
+        $therapy->enabled = $request->enabled;
+
+        return $therapy->save();
+    }
 }

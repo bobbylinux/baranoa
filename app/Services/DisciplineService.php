@@ -58,4 +58,14 @@ class DisciplineService extends BaseService
         return $discipline->save();
     }
 
+    public function createDiscipline($request)
+    {
+        $discipline = new Discipline();
+
+        $discipline->description = $request->description;
+        $discipline->enabled = $request->enabled;
+
+        return $discipline->save();
+    }
+
 }

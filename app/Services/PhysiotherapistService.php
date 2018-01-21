@@ -41,4 +41,15 @@ class PhysiotherapistService extends BaseService
         return $physiotherapist->save();
     }
 
+    public function createPhysiotherapist($request)
+    {
+        $physioteraphist = new Physiotherapist();
+
+        $physioteraphist->first_name = $request->firstname;
+        $physioteraphist->last_name = $request->lastname;
+        $physioteraphist->enabled = $request->enabled;
+
+        return $physioteraphist->save();
+    }
+
 }
