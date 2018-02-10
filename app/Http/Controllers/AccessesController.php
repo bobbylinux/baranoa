@@ -23,6 +23,7 @@ class AccessesController extends Controller
      */
     public function create()
     {
+        var_dump(Request);
     }
 
     /**

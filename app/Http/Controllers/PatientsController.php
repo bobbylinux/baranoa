@@ -45,7 +45,9 @@ class PatientsController extends Controller
      */
     public function create()
     {
-
+        $menu = $this->settings->getSetting(array('key' => 'menu'));
+        $cities = $this->cities->getSelectableCities();
+        return view('patients.create', compact('menu', 'cities'));
     }
 
     /**
@@ -56,9 +58,9 @@ class PatientsController extends Controller
      */
     public function store(Request $request)
     {
-        $patient_id = $request->input('patientId');
+        $this->patients->createPatient($request);
 
-        return $patient_id;
+        return redirect('patients');
     }
 
     /**
@@ -87,9 +89,9 @@ class PatientsController extends Controller
     {
         $menu = $this->settings->getSetting(array('key' => 'menu'));
         $parameters['id'] = $id;
-        $patients = $this->patients->getPatients($parameters);
+        $patient = $this->patients->getPatient($parameters);
         $cities = $this->cities->getSelectableCities();
-        return view('patients.edit', compact('patients','cities', 'menu'));
+        return view('patients.edit', compact('patient','cities', 'menu'));
     }
 
     /**
@@ -101,8 +103,8 @@ class PatientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        return redirect('physiotherapists');
+        $this->patients->updatePatient($request, $id);
+        return redirect('patients');
     }
 
     /**

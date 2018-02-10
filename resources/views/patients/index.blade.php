@@ -67,13 +67,18 @@
                             <td>{!! $patient->tax_code !!}</td>
                             <td>
                                 <a class="icon-link" href="{!! url('patients/'.$patient->id.'/edit') !!}" title="Modifica Anagrafica"><i class="fa fa-address-card" aria-hidden="true"></i></a>
-                                <a class="icon-link" href="#" title="Nuovo Accesso"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                <a class="icon-link" href="{!! url('accesses/create/') !!}" title="Nuovo Accesso"><i class="fa fa-calendar" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{!! url('patients/create') !!}" class="btn btn-outline-success btn-block">Nuovo Paziente</a>
         </div>
     </div>
     @endif
