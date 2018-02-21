@@ -169,6 +169,31 @@ $(document).ready(function(){
     });
     /*end therapies*/
 
+    /*click on create new access button on patient index view*/
+    $(document).on("click",".btn-create-access", function(event){
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var id = $(this).data("id");
+        var url_new_cycle = "cycles/"+id+"/create_cycle";
+        $.ajax({
+            url : url,
+            type: "get",
+            success : function (data,state) {
+                console.log(data);
+                if (isEmpty(data)) {
+                    $("#btn-new-cycle").attr("href", url_new_cycle);
+                    $("#modal-new-cycle").modal();
+
+
+                }
+            },
+            error : function (request,state,errors) {
+                alert("E' evvenuto un errore. Il stato della chiamata: "+state);
+            }
+        });
+
+    });
+
     //search patient
     $("#patient").select2({
         width: '100%',
@@ -198,6 +223,13 @@ $(document).ready(function(){
             }
         }
     });
-
+    /*end search patient*/
     /*end events*/
+    function isEmpty(obj) {
+        for(var prop in obj) {
+            if(obj.hasOwnProperty(prop))
+                return false;
+        }
+        return true;
+    }
 });

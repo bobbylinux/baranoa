@@ -2,24 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CycleService;
-use App\Services\PatientService;
-use App\Services\SettingService;
 use Illuminate\Http\Request;
 
-class AccessesController extends Controller
+class CyclesController extends Controller
 {
-    private $patients;
-    private $cycles;
-    private $settings;
-
-    public function __construct(PatientService $patient, SettingService $settings, CycleService $cycles)
-    {
-        $this->patients = $patient;
-        $this->cycles = $cycles;
-        $this->settings = $settings;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -35,11 +21,9 @@ class AccessesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function beforeNewAccess($patient_id)
+    public function create()
     {
-        //il paziente ha già un ciclo?
-        $cycle = $this->cycles->getPatientOpenedCycles($patient_id);
-        return response()->json($cycle);
+        //
     }
 
     /**
@@ -50,6 +34,7 @@ class AccessesController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -95,5 +80,10 @@ class AccessesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createCycle($patient_id)
+    {
+        echo "create";
     }
 }

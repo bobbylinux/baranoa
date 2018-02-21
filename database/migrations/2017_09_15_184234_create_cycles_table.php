@@ -19,8 +19,11 @@ class CreateCyclesTable extends Migration
             $table->date('end_date')->nullable();
             $table->string('note')->nullable();
             $table->string('program')->nullable();
+            $table->integer('patient_id');
             $table->string('final_report')->nullable();
             $table->timestamps();
+            /*foreign keys*/
+            $table->foreign('patient_id')->references('id')->on('patients');
         });
     }
 

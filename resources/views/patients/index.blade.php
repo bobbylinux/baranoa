@@ -40,46 +40,70 @@
     {!! Form::close() !!}
 
     @if (isset($patients))
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-table"></i> Lista Pazienti
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>Cognome</th>
-                        <th>Nome</th>
-                        <th>Data di Nascita</th>
-                        <th>Comune di Nascita</th>
-                        <th>Codice Fiscale</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($patients as $patient)
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Lista Pazienti
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
                         <tr>
-                            <td>{!! $patient->last_name !!}</td>
-                            <td>{!! $patient->first_name !!}</td>
-                            <td>{!! $patient->date_of_birth !!}</td>
-                            <td>{!! $patient->city->name !!}</td>
-                            <td>{!! $patient->tax_code !!}</td>
-                            <td>
-                                <a class="icon-link" href="{!! url('patients/'.$patient->id.'/edit') !!}" title="Modifica Anagrafica"><i class="fa fa-address-card" aria-hidden="true"></i></a>
-                                <a class="icon-link" href="{!! url('accesses/create/') !!}" title="Nuovo Accesso"><i class="fa fa-calendar" aria-hidden="true"></i></a>
-                            </td>
+                            <th>Cognome</th>
+                            <th>Nome</th>
+                            <th>Data di Nascita</th>
+                            <th>Comune di Nascita</th>
+                            <th>Codice Fiscale</th>
+                            <th></th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($patients as $patient)
+                            <tr>
+                                <td>{!! $patient->last_name !!}</td>
+                                <td>{!! $patient->first_name !!}</td>
+                                <td>{!! $patient->date_of_birth !!}</td>
+                                <td>{!! $patient->city->name !!}</td>
+                                <td>{!! $patient->tax_code !!}</td>
+                                <td>
+                                    <a class="icon-link btn-edit-patient"
+                                       href="{!! url('patients/'.$patient->id.'/edit') !!}" title="Modifica Anagrafica"><i
+                                                class="fa fa-address-card" aria-hidden="true"></i></a>
+                                    <a class="icon-link btn-create-access"
+                                       href="{!! url('accesses/'. $patient->id.'/before_new_access') !!}" data-id="{!! $patient->id !!}"
+                                       title="Nuovo Accesso"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{!! url('patients/create') !!}" class="btn btn-outline-success btn-block">Nuovo Paziente</a>
+            </div>
+        </div>
+    @endif
+
+    <div class="modal" id="modal-new-cycle" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nuovo Ciclo Di Cura</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Il paziente non ha un ciclo di cura aperto. Ne verrà aperto uno nuovo.</p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" id="btn-new-cycle" class="btn btn-primary">Conferma</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <a href="{!! url('patients/create') !!}" class="btn btn-outline-success btn-block">Nuovo Paziente</a>
-        </div>
-    </div>
-    @endif
 @stop
